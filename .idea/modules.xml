@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/../Angular/.idea/Angular.iml" filepath="$PROJECT_DIR$/../Angular/.idea/Angular.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/DRSOnlineShopping.iml" filepath="$PROJECT_DIR$/.idea/DRSOnlineShopping.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../.idea/pythonProject.iml" filepath="$PROJECT_DIR$/../.idea/pythonProject.iml" />
+    </modules>
+  </component>
+</project>
