@@ -14,7 +14,7 @@ blp=Blueprint("users",__name__,description="Operations with users")
 class UserLogin(MethodView):
     @blp.arguments(UserSchema)
     def post(self,user_data):
-        user=UserModel.query.filter(UserModel.username==user_data["username"]).first()
+        user=UserModel.query.filter(UserModel.email==user_data["email"]).first()
         
         if user and pbkdf2_sha256.verify(user_data["password"],user.password):
             access_token=create_access_token(identity=user.id)
@@ -32,10 +32,15 @@ class UserLogin(MethodView):
 class UserRegister(MethodView):
     @blp.arguments(UserSchemaRegister)
     def post(self,user_data):
-        if UserModel.query.filter(UserModel.username==user_data["username"]).first():
+        if UserModel.query.filter(UserModel.email==user_data["email"]).first():
             abort(409,message="A user with username alredy exists.")
         
-        user=UserModel(username=user_data["username"],
+        user=UserModel(name=user_data["name"],
+                       surname=user_data["surname"],
+                       address=user_data["address"],
+                       city=user_data["city"],
+                       country=user_data["country"],
+                       phone=user_data["phone"],
                        email=user_data["email"],
                        password=pbkdf2_sha256.hash(user_data["password"]))
         
