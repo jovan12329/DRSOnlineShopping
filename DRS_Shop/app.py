@@ -24,6 +24,10 @@ def create_app():
     app.config["OPENAPI_SWAGGER_UI_PATH"]="/swagger-ui"
     app.config["OPENAPI_SWAGGER_UI_URL"]="https://cdn.jsdelivr.net/npm/swagger-ui-dist/"
     app.config['SQLALCHEMY_DATABASE_URI'] = environ.get('DB_URL')
+    
+    
+    CORS(app)
+    
     db.init_app(app)
     
     api=Api(app)
