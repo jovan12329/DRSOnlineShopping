@@ -6,3 +6,4 @@ flask-sqlalchemy
 flask-jwt-extended
 passlib
 psycopg2-binary
+flask_cors
