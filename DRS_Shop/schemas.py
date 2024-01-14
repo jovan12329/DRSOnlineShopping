@@ -47,7 +47,6 @@ class UserSchema(Schema):
 class ProductSchema(Schema):
     id=fields.Int(dump_only=True)
     name=fields.Str(required=True)
-    image=fields.Str(required=True)
     price=fields.Int(required=True)
     currency=fields.Str(required=True)
     quantity=fields.Int(required=True)
@@ -55,7 +54,6 @@ class ProductSchema(Schema):
 class ProductSchemaUpdate(Schema):
     id=fields.Int(required=True)
     name=fields.Str(required=True)
-    image=fields.Str(required=True)
     price=fields.Int(required=True)
     currency=fields.Str(required=True)
     quantity=fields.Int(required=True)

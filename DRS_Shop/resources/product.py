@@ -27,7 +27,6 @@ class ProductCreateUpdate(MethodView):
         
         
         product.name=product_data["name"]
-        product.image=product_data["image"]
         product.price=product_data["price"]
         product.currency=product_data["currency"]
         product.quantity=product_data["quantity"]
