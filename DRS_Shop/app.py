@@ -10,7 +10,7 @@ from db import db
 import models
 
 from resources.user import blp as UserBlueprint
-
+from resources.product import blp as ProductBlueprint
 
 def create_app():
     
@@ -39,6 +39,6 @@ def create_app():
         db.create_all()
     
     api.register_blueprint(UserBlueprint)
-    
+    api.register_blueprint(ProductBlueprint)
     
     return app
