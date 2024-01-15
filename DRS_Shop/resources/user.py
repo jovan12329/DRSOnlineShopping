@@ -3,6 +3,7 @@ from flask_smorest import Blueprint,abort
 from passlib.hash import pbkdf2_sha256
 from flask_jwt_extended import create_access_token,jwt_required,get_jwt,get_jwt_identity
 from flask import jsonify
+from mail_notify import send_mail
 
 from sqlalchemy.exc import SQLAlchemyError
 from db import db
@@ -100,6 +101,8 @@ class UserRegister(MethodView):
         try:
             db.session.add(user)
             db.session.commit()
+            message=f"User with username {user_data["email"]} has registered."
+            send_mail(f"Registration {user_data["email"]}",message,"drsprodavnica@gmail.com")
         except SQLAlchemyError:
             abort(500,message="An error occured while inserting the item.")
         
