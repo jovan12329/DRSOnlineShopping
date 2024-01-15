@@ -1,7 +1,7 @@
 from flask.views import MethodView
 from flask_smorest import Blueprint,abort
 from passlib.hash import pbkdf2_sha256
-from flask_jwt_extended import create_access_token,jwt_required,get_jwt
+from flask_jwt_extended import create_access_token,jwt_required,get_jwt,get_jwt_identity
 from flask import jsonify
 
 from sqlalchemy.exc import SQLAlchemyError
@@ -28,6 +28,7 @@ class UserLogin(MethodView):
 @blp.route("/change")
 class UserUpdate(MethodView):
     
+    @jwt_required()
     @blp.arguments(UserSchemaUpdate)
     @blp.response(201,UserSchemaViewUpdate)
     def put(self,user_data):
@@ -105,7 +106,17 @@ class UserRegister(MethodView):
         return {"message":"User created successfully."},201
 
 
+@blp.route("/current")
+class CurrentUser(MethodView):
+    
+    @jwt_required()
+    @blp.response(200,UserSchemaViewUpdate)
+    def get(self):
+        jwt=get_jwt_identity()
 
+        user=UserModel.query.get(jwt)
+        
+        return user
 
     
     
