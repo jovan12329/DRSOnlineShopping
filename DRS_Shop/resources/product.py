@@ -1,7 +1,7 @@
 from flask.views import MethodView
 from flask_smorest import Blueprint,abort
 from passlib.hash import pbkdf2_sha256
-from flask_jwt_extended import create_access_token
+from flask_jwt_extended import jwt_required,get_jwt_identity
 
 from sqlalchemy.exc import SQLAlchemyError
 from db import db
@@ -19,9 +19,16 @@ class ProductCreateUpdate(MethodView):
     def get(self):
         return ProductModel.query.all()
     
+    @jwt_required()
     @blp.arguments(ProductSchemaUpdate)
     @blp.response(200,ProductSchema)
     def put(self,product_data):
+        
+        jwt=get_jwt_identity()
+        
+        if jwt!=1:
+            abort(401,message="Admin privilege required.")
+       
         
         product=ProductModel.query.get(product_data["id"])
         
@@ -42,10 +49,16 @@ class ProductCreateUpdate(MethodView):
         return product
     
     
-    
+    @jwt_required()
     @blp.arguments(ProductSchema)
     @blp.response(201,ProductSchema)
     def post(self,product_data):
+        
+        jwt=get_jwt_identity()
+        
+        if jwt!=1:
+            abort(401,message="Admin privilege required.")
+        
         
         product=ProductModel(**product_data)
         

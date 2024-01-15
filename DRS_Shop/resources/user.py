@@ -1,11 +1,12 @@
 from flask.views import MethodView
 from flask_smorest import Blueprint,abort
 from passlib.hash import pbkdf2_sha256
-from flask_jwt_extended import create_access_token
+from flask_jwt_extended import create_access_token,jwt_required,get_jwt
+from flask import jsonify
 
 from sqlalchemy.exc import SQLAlchemyError
 from db import db
-from models import UserModel
+from models import UserModel,BlockListModel
 from schemas import UserSchema,UserSchemaRegister,UserSchemaUpdate,UserSchemaViewUpdate
 
 blp=Blueprint("Users",__name__,description="Operations with users")
@@ -33,12 +34,11 @@ class UserUpdate(MethodView):
         
         user=UserModel.query.get(user_data["id"])
         userCheckE=UserModel.query.filter(UserModel.email==user_data["email"]).first()
-        userCheckP=UserModel.query.filter(UserModel.password==pbkdf2_sha256.hash(user_data["password"])).first()
+        #userCheckP=UserModel.query.filter(UserModel.password==pbkdf2_sha256.hash(user_data["password"])).first()
         
-        if userCheckE.id != user.id:
+        if userCheckE and userCheckE.id != user.id:
             abort(409,message="A user with email already exists.")
-        elif userCheckE.id != user.id:
-            abort(409,message="A user with password already exists.")
+        
             
             
         user.name=user_data["name"],
@@ -61,6 +61,22 @@ class UserUpdate(MethodView):
         return user  
 
 
+@blp.route("/logout")
+class UserLogOut(MethodView):
+    @jwt_required()
+    def post(self):
+        jti=get_jwt()["jti"]
+        blc=BlockListModel(token=jti)
+
+        try:
+            db.session.add(blc)
+            db.session.commit()
+        except SQLAlchemyError:
+            abort(500,message="An error occured while inserting the item.")
+        
+       
+        
+        return {"message":"Successfully logged out."},201
 
 
 #Register Blueprints
