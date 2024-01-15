@@ -19,7 +19,7 @@ class UserLogin(MethodView):
     def post(self,user_data):
         user=UserModel.query.filter(UserModel.email==user_data["email"]).first()
         
-        if user and pbkdf2_sha256.verify(user_data["password"],user.password):
+        if user and user_data["password"]==user.password:
             access_token=create_access_token(identity=user.id)
             return {"access_token":access_token}
         
@@ -43,14 +43,14 @@ class UserUpdate(MethodView):
         
             
             
-        user.name=user_data["name"],
-        user.surname=user_data["surname"],
-        user.address=user_data["address"],
-        user.city=user_data["city"],
-        user.country=user_data["country"],
-        user.phone=user_data["phone"],
-        user.email=user_data["email"],
-        user.password=pbkdf2_sha256.hash(user_data["password"])
+        user.name=user_data["name"]
+        user.surname=user_data["surname"]
+        user.address=user_data["address"]
+        user.city=user_data["city"]
+        user.country=user_data["country"]
+        user.phone=user_data["phone"]
+        user.email=user_data["email"]
+        user.password=user_data["password"]
             
         
         
@@ -96,7 +96,7 @@ class UserRegister(MethodView):
                        country=user_data["country"],
                        phone=user_data["phone"],
                        email=user_data["email"],
-                       password=pbkdf2_sha256.hash(user_data["password"]))
+                       password=user_data["password"])
         
         try:
             db.session.add(user)
