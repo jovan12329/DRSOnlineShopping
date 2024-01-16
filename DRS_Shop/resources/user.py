@@ -7,8 +7,8 @@ from mail_notify import send_mail
 
 from sqlalchemy.exc import SQLAlchemyError
 from db import db
-from models import UserModel,BlockListModel
-from schemas import UserSchema,UserSchemaRegister,UserSchemaUpdate,UserSchemaViewUpdate
+from models import UserModel,BlockListModel,CardModel
+from schemas import UserSchema,UserSchemaRegister,UserSchemaUpdate,UserSchemaViewUpdate,CardSchema,CardSchemaUnverified,VerifiedSchema
 
 blp=Blueprint("Users",__name__,description="Operations with users")
 
@@ -121,5 +121,83 @@ class CurrentUser(MethodView):
         
         return user
 
+
+
+
+@blp.route("/verify")
+class CardVerify(MethodView):
+     
+    @jwt_required()
+    @blp.arguments(CardSchema)
+    def post(self,card_data):
+         
+        userId=card_data["userId"]
+        cardNumber=card_data["cardNumber"]
+         
+        user=CardModel.query.filter(CardModel.id==userId).first()
+        card=CardModel.query.filter(CardModel.cardNumber==cardNumber).first()
+        if user:
+            abort(400,message="You have alreday sent verification for card.")
+        
+        if card:
+            abort(400,message="The card number already exists.")
+
+        usr=UserModel.query.get(userId)
+        
+        
+        
+        cardSessoion=CardModel(userId=userId,
+                               email=usr.email,
+                               cardNumber=cardNumber,
+                               money=0.0,
+                               currency="USD",
+                               verified=False)
+         
+        try:
+            db.session.add(cardSessoion)
+            db.session.commit()
+        except SQLAlchemyError:
+            abort(500,message="An error occured while inserting the item.")
+        
+        return {"message":"Verification sent."},201
+    
+    
+    @jwt_required()
+    @blp.arguments(VerifiedSchema)
+    def put(self,verify_id):
+        
+        jwt=get_jwt_identity()
+        
+        if jwt!=1:
+            abort(401,message="Admin privilege required.")
+       
+        user=CardModel.query.filter(CardModel.userId==verify_id["userId"]).first()
+        
+        user.verified=True
+        
+        
+        try:
+            db.session.add(user)
+            db.session.commit()
+        except SQLAlchemyError:
+            abort(500,"An error occured during transaction.")
+        
+        return {"message":"User verified successfully."},200
+       
+    @jwt_required()
+    @blp.response(200,CardSchemaUnverified(many=True))
+    def get(self):
+        
+        jwt=get_jwt_identity()
+        
+        if jwt!=1:
+            abort(401,message="Admin privilege required.")
+        
+        users=CardModel.query.filter(CardModel.verified==False)
+        
+        return users
+        
+        
+         
     
     

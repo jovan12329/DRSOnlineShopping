@@ -57,3 +57,18 @@ class ProductSchemaUpdate(Schema):
     price=fields.Int(required=True)
     currency=fields.Str(required=True)
     quantity=fields.Int(required=True)
+    
+    
+class CardSchema(Schema):
+    id=fields.Int(dump_only=True)
+    userId=fields.Int(required=True)
+    cardNumber=fields.Str(required=True)
+
+
+class CardSchemaUnverified(Schema):
+    userId=fields.Int(required=True)
+    email=fields.Str(required=True)
+    cardNumber=fields.Str(required=True)
+    
+class VerifiedSchema(Schema):
+    userId=fields.Int(required=True)
