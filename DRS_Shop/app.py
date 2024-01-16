@@ -11,7 +11,7 @@ import models
 
 from resources.user import blp as UserBlueprint
 from resources.product import blp as ProductBlueprint
-
+from resources.payment import blp as PaymentBlueprint
 def create_app():
     
     app=Flask(__name__)
@@ -77,5 +77,7 @@ def create_app():
     
     api.register_blueprint(UserBlueprint)
     api.register_blueprint(ProductBlueprint)
+    api.register_blueprint(PaymentBlueprint)
+    
     
     return app

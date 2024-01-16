@@ -72,3 +72,15 @@ class CardSchemaUnverified(Schema):
     
 class VerifiedSchema(Schema):
     userId=fields.Int(required=True)
+    
+    
+class CashCheckSchema(Schema):
+    
+    cardNumber=fields.Str(required=True)
+    money=fields.Float(required=True)
+    currency=fields.Str(required=True)
+
+class CashUpdateSchema(Schema):
+
+    money=fields.Float(required=True)
+    currency=fields.Str(required=True)
