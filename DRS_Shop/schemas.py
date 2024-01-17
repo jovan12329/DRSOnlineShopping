@@ -84,3 +84,19 @@ class CashUpdateSchema(Schema):
 
     money=fields.Float(required=True)
     currency=fields.Str(required=True)
+    
+class BillSchema(Schema):
+    productId=fields.Int(required=True)
+    name=fields.Str(required=True)
+    price=fields.Int(required=True)
+    currency=fields.Str(required=True)
+    quantity=fields.Int(required=True)
+
+class BillSchemaResponse(Schema):
+    id=fields.Int(dump_only=True)
+    productId=fields.Int(required=True)
+    name=fields.Str(required=True)
+    price=fields.Int(required=True)
+    currency=fields.Str(required=True)
+    quantity=fields.Int(required=True)
+    

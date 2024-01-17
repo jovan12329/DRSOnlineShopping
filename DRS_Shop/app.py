@@ -74,7 +74,35 @@ def create_app():
     
     with app.app_context():
         db.create_all()
-    
+        
+        fd=models.UserModel.query.get(1)
+        
+        if fd is None:
+        
+            user=models.UserModel(name="Pera",
+                        surname="Peric",
+                        address="Bulevar Despota Stefana 5A",
+                        city="Novi Sad",
+                        country="Serbia",
+                        phone="0625555555",
+                        email="drsprodavnica@gmail.com",
+                        password="1111")
+            card=models.CardModel(userId=1,
+                                  email=user.email,
+                                  cardNumber="1234567891011111",
+                                  money=0.0,
+                                  currency="USD",
+                                  verified=True)
+            
+            db.session.add(user)
+            db.session.commit()
+            
+            db.session.add(card)
+            db.session.commit()
+            
+            
+        
+        
     api.register_blueprint(UserBlueprint)
     api.register_blueprint(ProductBlueprint)
     api.register_blueprint(PaymentBlueprint)
