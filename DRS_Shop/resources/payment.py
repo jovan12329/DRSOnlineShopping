@@ -10,7 +10,7 @@ from multiprocessing import Semaphore
 from sqlalchemy.exc import SQLAlchemyError
 from db import db
 from models import ProductModel,CardModel,UserModel,BillModel
-from schemas import CashCheckSchema,CashUpdateSchema,BillSchema,BillSchemaResponse,AdminBillSchemaResponse
+from schemas import CashCheckSchema,CashUpdateSchema,BillSchema,BillSchemaResponse,AdminBillSchemaResponse,ConvertSchema
 from exchange import exchange_converter
 
 
@@ -178,9 +178,34 @@ class TraceHistory(MethodView):
         
         billing=BillModel.query.filter(BillModel.email==user.email)
         
-        return billing 
+        return billing
+    
+     
+@blp.route("/convert")
+class MoneyConversion(MethodView):
+    
+    @jwt_required()
+    @blp.arguments(ConvertSchema)
+    def post(self,data):
         
-                 
+        jwt=get_jwt_identity()
+        
+        user=CardModel.query.filter(CardModel.userId==jwt).first()
+        
+        ccr=data["currency"]
+        
+        valt=exchange_converter(user.money,user.currency,ccr)
+        
+        user.money=valt
+        user.currency=ccr
+        
+        try:
+            db.session.add(user)
+            db.session.commit()
+        except SQLAlchemyError:
+            abort(500,message="An error occured during transaction.")
+        
+        return {"money":user.money,"currency":user.currency},200       
         
         
     

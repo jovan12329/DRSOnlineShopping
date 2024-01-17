@@ -108,3 +108,6 @@ class AdminBillSchemaResponse(Schema):
     price=fields.Int(required=True)
     currency=fields.Str(required=True)
     quantity=fields.Int(required=True)
+
+class ConvertSchema(Schema):
+    currency=fields.Str(required=True)
