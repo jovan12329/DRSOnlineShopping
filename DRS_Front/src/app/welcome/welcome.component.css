@@ -1,0 +1,64 @@
+/* welcome.component.css */
+
+body, html {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+}
+
+.outer {
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-image: url('/assets/naslovnaa.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+}
+
+.welcome-container {
+  max-width: 400px; 
+  margin: auto;
+  padding: 40px; 
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  background-color:rgb(52, 52, 177); 
+  text-align: center;
+  color: #fff; 
+}
+
+.welcome-container h2 {
+  font-size: 28px; 
+  margin-bottom: 20px; 
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
+}
+
+.welcome-container p {
+  font-size: 16px; 
+  margin-bottom: 20px; 
+}
+
+.buttons-container {
+  margin-top: 20px;
+}
+
+button {
+  background-color: #8ccbe5;
+  color: black;
+  padding: 12px; 
+  margin: 5px;
+  border: none;
+  border-radius: 8px; 
+  cursor: pointer;
+}
+
+button:hover {
+  background-color:rgb(9, 39, 170);
+}

@@ -1,0 +1,11 @@
+<!-- user-verification.component.html -->
+<div class="add-product-form">
+  <h2>Verify Your Information</h2>
+  <form (submit)="onSubmit()">
+    <div class="form-group">
+      <label for="cardNumber">Card Number:</label>
+      <input type="text" id="cardNumber" name="cardNumber" [(ngModel)]="user.cardNumber" required>
+    </div>
+    <button type="submit">Verify</button>
+  </form>
+</div>

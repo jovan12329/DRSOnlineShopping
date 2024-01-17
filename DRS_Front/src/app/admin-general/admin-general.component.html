@@ -1,0 +1,26 @@
+<!-- admin-general.component.html -->
+<div class="outer-admin">
+  <div class="admin-products-container">
+    <h2>Admin General</h2>
+
+    <button class="add-product-button" (click)="toggleAddProductForm()">Add Product</button>
+    <button class="product-info-button" (click)="toggleProductInfo()">Product Info</button>
+    <button class="tracking-button" (click)="toggleTracking()">Tracking</button>
+    <button class="verification-button" (click)="toggleVerification()">Verification</button>
+    <button class="logout-button" (click)="logout()">Logout</button>
+    
+    <!-- Add Product Form -->
+    <app-admin-product-add *ngIf="showAddProductForm"></app-admin-product-add>
+    
+    <!-- Product Info Component -->
+    <app-admin-product-info *ngIf="showProductInfo"></app-admin-product-info>
+
+    <!-- Tracking Component -->
+    <app-admin-tracking *ngIf="showTracking"></app-admin-tracking>
+
+    <!-- Verification Component -->
+    <app-admin-verification *ngIf="showVerification"></app-admin-verification>
+
+    <!-- Logout Button -->
+  </div>
+</div>

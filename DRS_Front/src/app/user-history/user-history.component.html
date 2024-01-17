@@ -1,0 +1,26 @@
+<!-- user-history.component.html -->
+<div class="admin-products-container">
+  <h2>User History</h2>
+
+  <!-- History Data table -->
+  <table>
+    <thead>
+      <tr>
+        <th>Payment ID</th>
+        <th>Product ID</th>
+        <th>Name</th>
+        <th>Price</th>
+        <th>Currency</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let historyItem of historyData">
+        <td>{{ historyItem.id }}</td>
+        <td>{{ historyItem.productId }}</td>
+        <td>{{ historyItem.name }}</td>
+        <td>{{ historyItem.price }}</td>
+        <td>{{ historyItem.currency }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>

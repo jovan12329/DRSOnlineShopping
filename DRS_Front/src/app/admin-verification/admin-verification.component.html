@@ -1,0 +1,26 @@
+<!-- admin-verification.component.html -->
+<div class="admin-products-container">
+  <h2>User Verification</h2>
+
+  <!-- User list table -->
+  <table>
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Email</th>
+        <th>Card</th>
+        <th>Action</th> <!-- New column for buttons -->
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let user of users">
+        <td>{{ user.userId }}</td>
+        <td>{{ user.email }}</td>
+        <td>{{ user.cardNumber }}</td>
+        <td>
+          <button (click)="verify(user)">Verify</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

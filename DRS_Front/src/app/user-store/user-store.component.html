@@ -1,0 +1,40 @@
+<!-- user-store.component.html -->
+<div class="admin-products-container">
+  <h2>Store Items</h2>
+
+  <!-- Product list table -->
+  <table>
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Price</th>
+        <th>Currency</th>
+        <th>Quantity</th>
+        <th>Action</th> <!-- New column for buttons -->
+        <th>Action</th> <!-- New column for Update button -->
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let product of products">
+        <td>{{ product.id }}</td>
+        <td>{{ product.name }}</td>
+        <td>
+          <input type="number" [(ngModel)]="product.price" disabled>
+        </td>
+        <td>
+          <select [(ngModel)]="product.currency">
+            <option *ngFor="let currency of currencies" [value]="currency">{{ currency }}</option>
+          </select>
+        </td>
+        <td>{{ product.quantity }}</td>
+        <td>
+          <button (click)="updateProduct(product)">Update</button>
+        </td>
+        <td>
+          <button (click)="buyProduct(product)">Buy</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

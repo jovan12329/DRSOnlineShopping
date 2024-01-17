@@ -1,0 +1,30 @@
+<!-- admin-tracking.component.html -->
+<div class="admin-products-container">
+  <h2>Admin Tracking</h2>
+
+  <!-- Tracking Data table -->
+  <table>
+    <thead>
+      <tr>
+        <th>Payment ID</th>
+        <th>Email</th>
+        <th>Product ID</th>
+        <th>Name</th>
+        <th>Price</th>
+        <th>Currency</th>
+        <th>Quantity</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let tracking of trackingData">
+        <td>{{ tracking.id }}</td>
+        <td>{{ tracking.email }}</td>
+        <td>{{ tracking.productId }}</td>
+        <td>{{ tracking.name }}</td>
+        <td>{{ tracking.price }}</td>
+        <td>{{ tracking.currency }}</td>
+        <td>{{ tracking.quantity }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>

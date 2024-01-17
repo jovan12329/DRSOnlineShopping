@@ -1,0 +1,57 @@
+/* registration.component.css */
+.outer-registration {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-image: url('/assets/naslovnaa.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  height: 80vh; /* Smanjio sam visinu na 80% visine ekrana */
+  overflow-y: auto;
+}
+
+.registration-container {
+  max-width: 250px; /* Povećao sam maksimalnu širinu form-container-a */
+  margin: auto;
+  padding: 10px; /* Prilagođen padding */
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  background-color: rgba(34, 34, 182, 0.8);
+  text-align: center;
+  color: #fff;
+}
+
+.form-group {
+  margin-bottom: 8px; /* Prilagođen margin-bottom */
+}
+
+label {
+  display: block;
+  margin-bottom: 4px; /* Prilagođen margin-bottom */
+  color: #000; /* Promenjena boja teksta u crnu */
+}
+
+input {
+  width: calc(100% - 20px);
+  padding: 8px; /* Prilagođen padding */
+  box-sizing: border-box;
+  margin-bottom: 8px;
+}
+
+.form-group:last-child {
+  margin-bottom: 0;
+}
+
+button {
+  background-color: #45a049;
+  color: black;
+  padding: 10px; /* Prilagođen padding */
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color:green;
+}

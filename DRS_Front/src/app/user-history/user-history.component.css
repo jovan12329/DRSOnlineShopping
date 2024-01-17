@@ -1,0 +1,55 @@
+/* admin-tracking.component.css */
+.outer-admin-tracking {
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-image: url('/assets/naslovnaa.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.admin-products-container {
+  max-width: 600px; /* Adjust the max-width according to your design */
+  margin: 20px auto;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: #8ccbe5;
+  text-align: center;
+  color: #000; /* Promenjena boja teksta u crnu */
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+th, td {
+  border: 1px solid #ddd;
+  padding: 12px; /* Increase padding for better spacing */
+  text-align: left;
+  color: #000; /* Promenjena boja teksta u crnu */
+}
+
+th {
+  background-color: #f2f2f2;
+}
+
+h2 {
+  margin-top: 0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: #000; /* Promenjena boja teksta u crnu */
+}
+
+/* Optional: Add some additional styling for better readability */
+tr:hover {
+  background-color: #4caf50; /* Change background color on hover */
+  color: #fff; /* Change text color on hover */
+}
+
+th, td {
+  transition: background-color 0.3s ease; /* Add smooth transition effect */
+}

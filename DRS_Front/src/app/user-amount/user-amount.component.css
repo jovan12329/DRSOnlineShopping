@@ -1,0 +1,64 @@
+/* user-amount.component.css */
+.add-product-form {
+  max-width: 400px; /* Adjusted max-width according to your design */
+  margin: 20px auto;
+  padding: 20px; /* Adjusted padding */
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: #8ccbe5; /* Changed background color to blue */
+  text-align: center;
+  color: #000; /* Changed text color to black */
+}
+
+form {
+  margin-top: 20px;
+}
+
+.form-group {
+  margin-bottom: 15px; /* Adjusted margin-bottom */
+}
+
+h2 {
+  margin-top: 0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+label {
+  display: block;
+  margin-bottom: 5px; /* Adjusted margin-bottom */
+  color: #000; /* Changed text color to black */
+}
+
+input,
+select {
+  width: 100%;
+  padding: 10px;
+  box-sizing: border-box;
+}
+
+button {
+  background-color: #4caf50; /* Changed background color to green */
+  color: white;
+  padding: 12px; /* Adjusted padding */
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  margin-right: 10px;
+}
+
+button:hover {
+  background-color: #45a049; /* Changed hover background color to dark green */
+}
+
+.close-button {
+  background-color: #f44336; /* Changed background color to red */
+}
+
+.close-button:hover {
+  background-color: #d32f2f; /* Changed hover background color to dark red */
+}
+
+.close-button,
+.add-product-button {
+  margin-top: 10px;
+}

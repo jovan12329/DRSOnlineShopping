@@ -1,0 +1,19 @@
+<!-- user-conversion.component.html -->
+<div class="add-product-form">
+  <h2>Convert Balance Of Your Account:</h2>
+
+  <!-- First Form: View-only Account Balance and Editable Currency -->
+  <form>
+    <div class="form-group">
+      <label for="viewAccountBalance">Account Balance:</label>
+      <input type="number" id="viewAccountBalance" name="viewAccountBalance" [(ngModel)]="paymentsData.money" disabled>
+    </div>
+    <div class="form-group">
+      <label for="editableCurrency">Currency:</label>
+      <select id="editableCurrency" name="editableCurrency" [(ngModel)]="newProduct.currency">
+        <option *ngFor="let currency of currencies" [value]="currency">{{ currency }}</option>
+      </select>
+    </div>
+    <button type="button" (click)="onCurrencyChange()">Change Currency</button>
+  </form>
+</div>

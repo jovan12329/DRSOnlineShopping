@@ -1,0 +1,55 @@
+.admin-products-container {
+  max-width: 800px; /* Prilagođena maksimalna širina prema vašem dizajnu */
+  margin: auto;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  background-color: #8ccbe5; /* Promenjena boja pozadine u plavu */
+  text-align: center;
+  color: #000; /* Promenjena boja teksta u crnu */
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+th, td {
+  border: 1px solid #ddd;
+  padding: 12px; /* Prilagođen padding */
+  text-align: left;
+  color: #000; /* Promenjena boja teksta u crnu */
+}
+
+th {
+  background-color: #f2f2f2;
+}
+
+button {
+  background-color: #4caf50; /* Promenjena boja dugmeta u zeleno */
+  color: white;
+  padding: 12px; /* Prilagođen padding */
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  margin-right: 10px;
+}
+
+button:hover {
+  background-color: #45a049; /* Promenjena boja dugmeta na hover u tamno zeleno */
+}
+
+/* Stilovi za dugmad u ćelijama tabele */
+td button {
+  background-color: #4caf50;
+  color: white;
+  padding: 8px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+td button:hover {
+  background-color: #45a049;
+}

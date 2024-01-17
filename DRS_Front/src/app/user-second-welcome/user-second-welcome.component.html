@@ -1,0 +1,24 @@
+<!-- user-second-welcome.component.html -->
+<div class="outer-admin">
+<div class="admin-products-container">
+  <h2>User General</h2>
+
+  <button class="store-button" (click)="toggleForm('showStoreForm')">Store</button>
+  <button class="profile-button" (click)="toggleForm('showProfileForm')">Profile</button>
+  <button class="verification-button" (click)="toggleForm('showVerificationForm')">Verification</button>
+  <button class="payments-button" (click)="toggleForm('showPaymentsForm')">Payments</button>
+  <button class="amount-button" (click)="toggleForm('showAmountForm')">Amount</button>
+  <button class="conversion-button" (click)="toggleForm('showConversionForm')">Conversion</button>
+  <button class="history-button" (click)="toggleForm('showHistoryForm')">History</button>
+  <button class="logout-button" (click)="logout()">Logout</button>
+
+  <app-user-store *ngIf="showForms['showStoreForm']"></app-user-store>
+  <app-user-profile *ngIf="showForms['showProfileForm']"></app-user-profile>
+  <app-user-verification *ngIf="showForms['showVerificationForm']"></app-user-verification>
+  <app-user-payments *ngIf="showForms['showPaymentsForm']"></app-user-payments>
+  <app-user-conversion *ngIf="showForms['showConversionForm']"></app-user-conversion>
+  <app-user-history *ngIf="showForms['showHistoryForm']"></app-user-history>
+  <app-user-amount *ngIf="showForms['showAmountForm']"></app-user-amount>
+
+</div>
+</div>

@@ -1,0 +1,61 @@
+/* registration.component.css */
+.outer-registration {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-image: url('/assets/naslovnaa.jpg'); /* Dodajte putanju do vaše pozadinske slike */
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  height: 100vh; /* Postavljamo visinu na 100% visine ekrana */
+  overflow-y: auto; /* Dodato za vertikalni skrol bar samo u okviru registration-container */
+}
+
+.registration-container {
+  max-width: 300px;
+  margin: auto;
+  padding: 10px; /* Smanjili smo padding */
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  background-color: rgba(34, 34, 182, 0.8);
+  text-align: center;
+  color: #fff;
+}
+
+/* Smanjenje margina između polja */
+.form-group {
+  margin-bottom: 8px; /* Smanjili smo margin-bottom */
+}
+
+/* Podešavanje stila za input polja */
+label {
+  display: block;
+  margin-bottom: 4px; /* Smanjili smo margin-bottom */
+  color: #ddd;
+}
+
+input {
+  width: calc(100% - 20px);
+  padding: 8px; /* Smanjili smo padding */
+  box-sizing: border-box;
+  margin-bottom: 8px; /* Smanjili smo margin-bottom */
+}
+
+/* Dodatni stil za smanjenje margina između polja */
+.form-group:last-child {
+  margin-bottom: 0;
+}
+
+/* Ostatak stila ostaje nepromenjen */
+button {
+  background-color: #8ccbe5;
+  color: black;
+  padding: 10px; /* Smanjili smo padding */
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: rgb(9, 39, 170);
+}

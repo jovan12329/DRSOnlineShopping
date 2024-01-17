@@ -1,0 +1,192 @@
+/* admin-general.component.css */
+
+.outer-admin {
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-image: url('/assets/naslovnaa.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.admin-products-container {
+  max-width: 800px;
+  margin: auto;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  background-color: rgba(34, 34, 182, 0.8);
+  text-align: center;
+  color: #fff;
+ 
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+th, td {
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: left;
+  color: #fff;
+}
+
+th {
+  background-color: #f2f2f2;
+}
+
+form {
+  margin-top: 20px;
+}
+
+.form-group {
+  margin-bottom: 15px;
+}
+
+label {
+  display: block;
+  margin-bottom: 5px;
+  color: #ddd;
+}
+
+input {
+  width: 100%;
+  padding: 8px;
+  box-sizing: border-box;
+}
+
+button {
+  background-color:  rgb(9, 39, 170);
+  color: white;
+  padding: 8px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-right: 10px;
+}
+
+button:hover {
+  background-color: rgb(9, 39, 170);
+}
+
+.close-button {
+  background-color:  rgb(9, 39, 170);
+}
+
+.close-button:hover {
+  background-color: rgb(9, 39, 170);
+}
+
+/* Style for additional buttons */
+.add-product-button,
+.product-info-button,
+.tracking-button,
+.verification-button,
+.store-button,
+.profile-button,
+.payments-button,
+.conversion-button,
+.history-button {
+  background-color: #8ccbe5;
+  color: #000; /* Promenjena boja teksta u crnu */
+  padding: 12px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  margin-right: 10px;
+}
+
+/* Hover style for additional buttons */
+.add-product-button:hover,
+.product-info-button:hover,
+.tracking-button:hover,
+.verification-button:hover,
+.store-button:hover,
+.profile-button:hover,
+.payments-button:hover,
+.conversion-button:hover,
+.history-button:hover {
+  background-color: rgb(9, 39, 170);
+}
+
+.add-product-button,
+.product-info-button,
+.tracking-button,
+.verification-button,
+.store-button,
+.profile-button,
+.payments-button,
+.conversion-button,
+.history-button,
+.amount-button, /* Dodao stil za Amount dugme */
+.logout-button {
+  background-color: #8ccbe5;
+  color: #000; /* Promenjena boja teksta u crnu */
+  padding: 12px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  margin-right: 10px;
+}
+
+/* Hover style for additional buttons */
+.add-product-button:hover,
+.product-info-button:hover,
+.tracking-button:hover,
+.verification-button:hover,
+.store-button:hover,
+.profile-button:hover,
+.payments-button:hover,
+.conversion-button:hover,
+.history-button:hover,
+.amount-button:hover, /* Dodao hover stil za Amount dugme */
+.logout-button:hover {
+  background-color: rgb(9, 39, 170);
+}
+
+/* Common style for all buttons */
+.close-button,
+.add-product-button,
+.product-info-button,
+.tracking-button,
+.verification-button,
+.store-button,
+.profile-button,
+.payments-button,
+.conversion-button,
+.history-button,
+.amount-button, /* Dodao stil za Amount dugme */
+.logout-button {
+  margin-top: 10px;
+}
+
+/* Common style for all buttons */
+.close-button,
+.add-product-button,
+.product-info-button,
+.tracking-button,
+.verification-button,
+.store-button,
+.profile-button,
+.payments-button,
+.conversion-button,
+.history-button {
+  margin-top: 10px;
+}
+
+/* Additional style for the title on the welcome page */
+.title-container {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+/* Style for the welcome page title */
+.welcome-title {
+  color: #fff;
+  font-size: 24px;
+}

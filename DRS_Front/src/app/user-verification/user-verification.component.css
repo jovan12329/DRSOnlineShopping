@@ -1,0 +1,55 @@
+/* user-verification.component.css */
+.add-product-form {
+  max-width: 400px; /* Prilagođena maksimalna širina prema vašem dizajnu */
+  margin: 20px auto;
+  padding: 10px; /* Prilagođen padding */
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color:  #8ccbe5; ;
+  text-align: center;
+  color: #000; /* Promenjena boja teksta u crnu */
+}
+
+form {
+  margin-top: 20px;
+}
+
+.form-group {
+  margin-bottom: 12px; /* Prilagođen margin-bottom */
+}
+
+h2 {
+  margin-top: 0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: #000; /* Promenjena boja teksta u crnu */
+}
+
+label {
+  display: block;
+  margin-bottom: 6px; /* Prilagođen margin-bottom */
+  color: #000; /* Promenjena boja teksta u crnu */
+}
+
+input, select {
+  width: 100%;
+  padding: 10px;
+  box-sizing: border-box;
+}
+
+button {
+  background-color: #4caf50;
+  color: white;
+  padding: 12px; /* Prilagođen padding */
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #45a049;
+}
+
+input:disabled {
+  background-color: #f4f4f4;
+  border: 1px solid #ddd;
+}

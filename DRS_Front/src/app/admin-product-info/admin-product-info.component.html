@@ -1,0 +1,30 @@
+<!-- admin-product-info.component.html -->
+<div class="admin-products-container">
+  <h2>Product Information</h2>
+
+  <!-- Product list table -->
+  <table>
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Price</th>
+        <th>Currency</th>
+        <th>Quantity</th>
+        <th>Action</th> <!-- New column for buttons -->
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let product of products">
+        <td>{{ product.id }}</td>
+        <td>{{ product.name }}</td>
+        <td>{{ product.price }}</td>
+        <td>{{ product.currency }}</td>
+        <td>{{ product.quantity }}</td>
+        <td>
+          <button (click)="increaseQuantity(product)">Increase</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
