@@ -5,8 +5,9 @@ from flask_jwt_extended import jwt_required,get_jwt_identity
 from flask import jsonify
 from mail_notify import send_mail
 
-from multiprocessing import Semaphore
-
+from workers.payment_worker import shared as mem
+from workers.payment_worker import semaphore_manager,semaphore_db_1,semaphore_db_2,semaphore_db_3,check_verify,check_quantity,check_money,user_accout_update,bill_insert,product_q_update,admin_account_update
+from multiprocessing import Process,Manager
 from sqlalchemy.exc import SQLAlchemyError
 from db import db
 from models import ProductModel,CardModel,UserModel,BillModel
@@ -14,7 +15,12 @@ from schemas import CashCheckSchema,CashUpdateSchema,BillSchema,BillSchemaRespon
 from exchange import exchange_converter
 
 
-db_semaphore=Semaphore(1)
+
+manage=semaphore_manager
+ds1=semaphore_db_1
+ds2=semaphore_db_2
+ds3=semaphore_db_3
+
 
 
 blp=Blueprint("Payments",__name__,description="Payment methods")
@@ -81,79 +87,50 @@ class MoneyTransactions(MethodView):
          
         jwt=get_jwt_identity()
         
-        #proces 1 
-        card=CardModel.query.filter(CardModel.userId==jwt).first()
+        mem["data_buy"]=data_buy
         
-        if card is None:
-            abort(400,message="You haven't sent card for verification.")
+        p1=Process(target=check_verify,args=(jwt,manage,ds1,mem))
+        p2=Process(target=check_quantity,args=(manage,ds2,mem))
+        p3=Process(target=check_money,args=(jwt,manage,ds1,mem))
         
-        if not card.verified:
-            abort(400,message="The administrator haven't verified your account.")
-         
-        #proces2   
-        valuta=data_buy["currency"]
-        cenaOriginalna=data_buy["price"]
-        kolicina=data_buy["quantity"]
+        p1.start()
+        p2.start()
+        p3.start()
         
-        
-        pwd=ProductModel.query.get(data_buy["productId"])
-        
-        if pwd.quantity<kolicina:
-            abort(400,message="Not enough items on stock.")
-        
-        #proces3
-        koverzija=exchange_converter(cenaOriginalna,valuta,card.currency)
-        cenaQuantity= kolicina*koverzija
+        p1.join()
+        p2.join()
+        p3.join()
         
         
-        if card.money<cenaQuantity:
-            abort(400,message="You don't have enough money for transaction.")
         
-        card.money -=cenaQuantity
-        
-        admin=CardModel.query.filter(CardModel.userId==1).first()
-        
-        admin.money +=cenaQuantity
-        
-        koverzija=exchange_converter(cenaQuantity,card.currency,valuta)
-        
-        racun=BillModel(email=card.email,
-                        productId=data_buy["productId"],
-                        name=data_buy["name"],
-                        price=koverzija,
-                        currency=valuta,
-                        quantity=kolicina)
+        if(mem["verify_error"]==400):
+            abort(400,message="Your account is not verified.")
+        elif(mem["money_error"]==400):
+            abort(400,message="Your don't have enough money on account.")
+        elif(mem["quantity_error"]==400):
+            abort(400,message="Not enough products.")
         
         
-        pwd.quantity -= kolicina
+        p4=Process(target=user_accout_update,args=(jwt,manage,ds1,mem))
+        p5=Process(target=bill_insert,args=(jwt,manage,ds1,ds3,mem))
+        p6=Process(target=product_q_update,args=(manage,ds2,mem))
+        p7=Process(target=admin_account_update,args=(manage,ds1,mem))
         
-        try:
-            db.session.add(admin)
-            db.session.commit()
-        except SQLAlchemyError:
+        p4.start()
+        p5.start()
+        p6.start()
+        p7.start()
+        
+        p4.join()
+        p5.join()
+        p6.join()
+        p7.join()
+        
+        if(mem["database_error"]==500):
             abort(500,"An error occured during transaction.")
-        
-        try:
-            db.session.add(card)
-            db.session.commit()
-        except SQLAlchemyError:
-            abort(500,message="An error occured during transaction.")
-        
-        try:
-            db.session.add(racun)
-            db.session.commit()
-        except SQLAlchemyError:
-            abort(500,message="An error occured during transaction.")
-        
-        try:
-            db.session.add(pwd)
-            db.session.commit()
-        except SQLAlchemyError:
-            abort(500,message="An error occured during transaction.")
-        
-        
-        
-        return {"message":"Product is purchased."},200
+        else:
+            mem["data_buy"]=''
+            return {"message":"Product is purchased."},200
         
     @jwt_required()
     @blp.response(200,AdminBillSchemaResponse(many=True))
