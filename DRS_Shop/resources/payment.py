@@ -4,7 +4,7 @@ from passlib.hash import pbkdf2_sha256
 from flask_jwt_extended import jwt_required,get_jwt_identity
 from flask import jsonify
 from mail_notify import send_mail
-from flask_cors import cross_origin
+
 
 
 from workers.payment_worker import shared as mem
@@ -81,7 +81,6 @@ class CashRegister(MethodView):
         
 #Ovdje sam stao
 @blp.route("/buy")
-@cross_origin()
 class MoneyTransactions(MethodView):
     
     @jwt_required()
