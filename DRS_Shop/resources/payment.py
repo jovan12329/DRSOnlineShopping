@@ -10,7 +10,7 @@ from multiprocessing import Semaphore
 from sqlalchemy.exc import SQLAlchemyError
 from db import db
 from models import ProductModel,CardModel,UserModel,BillModel
-from schemas import CashCheckSchema,CashUpdateSchema,BillSchema,BillSchemaResponse,AdminBillSchemaResponse,ConvertSchema
+from schemas import CashCheckSchema,CashUpdateSchema,BillSchema,BillSchemaResponse,AdminBillSchemaResponse,ConvertSchema,ConvertDASchema
 from exchange import exchange_converter
 
 
@@ -217,8 +217,8 @@ class MoneyConversion(MethodView):
         return {"money":user.money,"currency":user.currency},200       
         
     @jwt_required()
-    @blp.arguments(ConvertSchema)
-    def get(self,data):
+    @blp.arguments(ConvertDASchema)
+    def post(self,data):
 
         
         prdt=ProductModel.query.get(data["id"])
