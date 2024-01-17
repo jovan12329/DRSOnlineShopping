@@ -192,6 +192,13 @@ class MoneyConversion(MethodView):
         
         user=CardModel.query.filter(CardModel.userId==jwt).first()
         
+        if user is None:
+            abort(400,message="You haven't sent card for verification.")
+        
+        if not user.verified:
+            abort(400,message="The administrator haven't verified your account.")
+        
+        
         ccr=data["currency"]
         
         valt=exchange_converter(user.money,user.currency,ccr)
