@@ -80,7 +80,8 @@ class MoneyTransactions(MethodView):
     def post(self,data_buy):
          
         jwt=get_jwt_identity()
-         
+        
+        #proces 1 
         card=CardModel.query.filter(CardModel.userId==jwt).first()
         
         if card is None:
@@ -88,7 +89,8 @@ class MoneyTransactions(MethodView):
         
         if not card.verified:
             abort(400,message="The administrator haven't verified your account.")
-            
+         
+        #proces2   
         valuta=data_buy["currency"]
         cenaOriginalna=data_buy["price"]
         kolicina=data_buy["quantity"]
@@ -99,7 +101,7 @@ class MoneyTransactions(MethodView):
         if pwd.quantity<kolicina:
             abort(400,message="Not enough items on stock.")
         
-        
+        #proces3
         koverzija=exchange_converter(cenaOriginalna,valuta,card.currency)
         cenaQuantity= kolicina*koverzija
         
@@ -217,14 +219,15 @@ class MoneyConversion(MethodView):
     @jwt_required()
     @blp.arguments(ConvertSchema)
     def get(self,data):
+
         
-        jwt=get_jwt_identity()
+        prdt=ProductModel.query.get(data["id"])
         
-        user=CardModel.query.filter(CardModel.userId==jwt).first()
-        
+        mmi=prdt.price
+        jdt=prdt.currency
         ccr=data["currency"]
         
-        valt=exchange_converter(user.money,user.currency,ccr)
+        valt=exchange_converter(mmi,jdt,ccr)
         
         
         
