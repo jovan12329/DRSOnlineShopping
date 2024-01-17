@@ -99,4 +99,12 @@ class BillSchemaResponse(Schema):
     price=fields.Int(required=True)
     currency=fields.Str(required=True)
     quantity=fields.Int(required=True)
-    
+
+class AdminBillSchemaResponse(Schema):
+    id=fields.Int(dump_only=True)
+    email=fields.Str(required=True)
+    productId=fields.Int(required=True)
+    name=fields.Str(required=True)
+    price=fields.Int(required=True)
+    currency=fields.Str(required=True)
+    quantity=fields.Int(required=True)

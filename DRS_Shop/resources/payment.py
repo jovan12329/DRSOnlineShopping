@@ -10,7 +10,7 @@ from multiprocessing import Semaphore
 from sqlalchemy.exc import SQLAlchemyError
 from db import db
 from models import ProductModel,CardModel,UserModel,BillModel
-from schemas import CashCheckSchema,CashUpdateSchema,BillSchema,BillSchemaResponse
+from schemas import CashCheckSchema,CashUpdateSchema,BillSchema,BillSchemaResponse,AdminBillSchemaResponse
 from exchange import exchange_converter
 
 
@@ -154,7 +154,7 @@ class MoneyTransactions(MethodView):
         return {"message":"Product is purchased."},200
         
     @jwt_required()
-    @blp.response(200,BillSchemaResponse(many=True))
+    @blp.response(200,AdminBillSchemaResponse(many=True))
     def get(self):
         
         jwt=get_jwt_identity()
@@ -173,6 +173,12 @@ class TraceHistory(MethodView):
     def get(self):
         
         jwt=get_jwt_identity()
+        
+        user=CardModel.query.filter(CardModel.userId==jwt).first()
+        
+        billing=BillModel.query.filter(BillModel.email==user.email)
+        
+        return billing 
         
                  
         
