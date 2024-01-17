@@ -186,7 +186,7 @@ class MoneyConversion(MethodView):
     
     @jwt_required()
     @blp.arguments(ConvertSchema)
-    def post(self,data):
+    def put(self,data):
         
         jwt=get_jwt_identity()
         
@@ -207,5 +207,19 @@ class MoneyConversion(MethodView):
         
         return {"money":user.money,"currency":user.currency},200       
         
+    @jwt_required()
+    @blp.arguments(ConvertSchema)
+    def get(self,data):
         
+        jwt=get_jwt_identity()
+        
+        user=CardModel.query.filter(CardModel.userId==jwt).first()
+        
+        ccr=data["currency"]
+        
+        valt=exchange_converter(user.money,user.currency,ccr)
+        
+        
+        
+        return {"money":valt,"currency":ccr},200 
     
