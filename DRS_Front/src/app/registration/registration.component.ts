@@ -44,6 +44,7 @@ export class RegistrationComponent {
       },
       (error) => {
         console.error('Registration error:', error);
+        alert('Registration error: User already exists');
       }
     );
   }

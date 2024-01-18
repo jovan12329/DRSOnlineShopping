@@ -46,6 +46,7 @@ export class UserProfileComponent implements OnInit {
       },
       (error) => {
         console.error('Error fetching current user:', error);
+                alert('Error: ' + error);
       }
     );
   }
@@ -80,6 +81,7 @@ export class UserProfileComponent implements OnInit {
       },
       (error) => {
         console.error('Profile update error:', error);
+        alert('Profile error: Invalid fields');
       }
     );
   }

@@ -51,6 +51,7 @@ export class AdminProductAddComponent implements OnInit {
       },
       (error) => {
         console.error('Error fetching currencies from ExchangeRate API:', error);
+                alert('Error: ' + error);
       }
     );
   }
@@ -74,6 +75,7 @@ export class AdminProductAddComponent implements OnInit {
       },
       (error) => {
         console.error('Error adding product:', error);
+                alert('Error: ' + error);
       }
     );
   }

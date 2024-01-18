@@ -40,6 +40,8 @@ export class UserVerificationComponent {
       },
       (error) => {
         console.error('Verification error:', error);
+        alert('Verification error: Invalid fields');
+
         // Handle error logic
       }
     );

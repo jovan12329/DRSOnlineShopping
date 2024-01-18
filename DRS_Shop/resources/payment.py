@@ -131,6 +131,7 @@ class MoneyTransactions(MethodView):
         if(mem["database_error"]==500):
             abort(500,"An error occured during transaction.")
         else:
+            send_mail("Payment transaction",f"Product purchased [{mem["data_buy"]}]","drsprodavnica@gmail.com")
             mem["data_buy"]=''
             return {"message":"Product is purchased."},200
         

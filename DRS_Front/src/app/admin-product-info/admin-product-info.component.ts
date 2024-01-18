@@ -24,6 +24,7 @@ export class AdminProductInfoComponent implements OnInit {
       },
       (error) => {
         console.error('Error fetching products:', error);
+                alert('Error: ' + error);
       }
     );
   }
@@ -59,6 +60,7 @@ export class AdminProductInfoComponent implements OnInit {
       },
       (error) => {
         console.error('Quantity increase error:', error);
+                alert('Error: ' + error);
       }
     );
   }

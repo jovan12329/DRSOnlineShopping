@@ -35,6 +35,7 @@ export class AdminVerificationComponent implements OnInit {
       },
       (error) => {
         console.error('Error fetching users:', error);
+                alert('Error: ' + error);
       }
     );
   }
@@ -61,10 +62,12 @@ export class AdminVerificationComponent implements OnInit {
     this.http.put(verifyUserEndpoint, requestBody, { headers }).subscribe(
       (response) => {
         console.log('User verified successfully:', response);
+                        alert('User verified successfully:');
         // Optionally, you can update the local user status or perform other actions
       },
       (error) => {
         console.error('User verification error:', error);
+                alert('Error: ' + error);
       }
     );
   }

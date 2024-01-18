@@ -36,6 +36,7 @@ export class AdminTrackingComponent implements OnInit {
       },
       (error) => {
         console.error('Error fetching tracking data:', error);
+                alert('Error: ' + error);
       }
     );
   }

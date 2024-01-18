@@ -48,6 +48,8 @@ export class UserPaymentsComponent implements OnInit {
       },
       (error) => {
         console.error('Error fetching payments data:', error);
+        alert('Payments Error: Verification');
+
       }
     );
   }
@@ -69,6 +71,8 @@ export class UserPaymentsComponent implements OnInit {
       },
       (error) => {
         console.error('Error fetching currencies from ExchangeRate API:', error);
+        alert('Payments Error: Verification');
+
       }
     );
   }

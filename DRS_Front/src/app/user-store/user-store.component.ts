@@ -30,6 +30,7 @@ export class UserStoreComponent implements OnInit {
       },
       (error) => {
         console.error('Error fetching store items:', error);
+        alert('Store Error: Verification');
       }
     );
   }
@@ -50,6 +51,7 @@ export class UserStoreComponent implements OnInit {
       },
       (error) => {
         console.error('Error fetching currencies from ExchangeRate API:', error);
+        alert('Store Error: Verification');
       }
     );
   }
@@ -101,6 +103,7 @@ export class UserStoreComponent implements OnInit {
       },
       (error) => {
         console.error('Product purchase error:', error);
+        alert('Store Error: Verification');
       }
     );
   }
@@ -138,6 +141,7 @@ updateProduct(product: any) {
     },
     (error) => {
       console.error('Product update error:', error);
+              alert('Error: ' + error);
     }
   );
 }

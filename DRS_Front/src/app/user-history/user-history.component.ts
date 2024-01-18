@@ -36,6 +36,7 @@ export class UserHistoryComponent implements OnInit {
       },
       (error) => {
         console.error('Error fetching user history data:', error);
+                //alert('Error: ' + error);
       }
     );
   }

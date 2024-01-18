@@ -48,6 +48,8 @@ export class UserConversionComponent implements OnInit {
       },
       (error) => {
         console.error('Error fetching payments data:', error);
+        alert('Conversion Error: Verification');
+
       }
     );
   }
@@ -69,6 +71,8 @@ export class UserConversionComponent implements OnInit {
       },
       (error) => {
         console.error('Error fetching currencies from ExchangeRate API:', error);
+        alert('Conversion Error: Verification');
+
       }
     );
   }
@@ -131,6 +135,7 @@ export class UserConversionComponent implements OnInit {
       },
       (error) => {
         console.error('Error updating currency:', error);
+        alert('Conversion Error: Verification');
         // Handle error as needed
       }
     );

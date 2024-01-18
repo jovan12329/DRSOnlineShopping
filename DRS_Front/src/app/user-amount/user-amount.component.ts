@@ -38,6 +38,7 @@ export class UserAmountComponent implements OnInit {
       },
       (error) => {
         console.error('Error fetching currencies from ExchangeRate API:', error);
+        alert('Amount Error: Verification');
       }
     );
   }
@@ -69,6 +70,7 @@ export class UserAmountComponent implements OnInit {
       },
       (error) => {
         console.error('Error adding amount:', error);
+        alert('Amount Error: Verification');
         // Handle error as needed
       }
     );

@@ -39,13 +39,16 @@ export class LoginComponent {
             this.router.navigate(['/user-second-welcome']);
           } else {
             console.error('Invalid JWT subject:', jwtSubject);
+            alert('Error: ' + jwtSubject);
           }
         } else {
           console.error('Invalid response or access_token:', response);
+          alert('Login error: Invalid fields');
         }
       },
       (error) => {
         console.error('Login error:', error);
+          alert('Login error: Invalid fields');
       }
     );
   }
